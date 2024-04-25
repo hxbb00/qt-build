@@ -1,0 +1,22 @@
+name: build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        with:
+          version: '5.15.2'
+          dir: '${{ github.workspace }}/qt5/'
+
+      - name: Show the artifacts
+        run: |
+          pwd
+          ls -al "${{ github.workspace }}/qt5/"
