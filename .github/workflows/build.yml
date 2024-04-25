@@ -10,7 +10,7 @@ jobs:
       - name: set release date
         shell: bash
         run: |
-          echo "RELEASE_DATE=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
+          echo "RELEASE_DATE=$(date '+%Y-%m-%d-%H-%M-%S')" >> ${GITHUB_ENV}
           
       - name: Checkout
         uses: actions/checkout@v4
