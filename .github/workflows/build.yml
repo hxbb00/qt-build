@@ -14,8 +14,6 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           version: '5.15.2'
-          dir: '${{ github.workspace }}/qt5'
-          cache: true
 
       - uses: actions/upload-artifact@v4
         with:
