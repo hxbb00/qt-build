@@ -15,13 +15,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
-      - name: download qt mysql driver
+      - name: install qt mysql driver
         shell: bash
         run: |
-          mkdir qsqlmysql_5.15.2_MSVC2019_64
-          curl -o qsqlmysql5.15.2_MSVC2019_64.zip https://github.com/thecodemonkey86/qt_mysql_driver/files/5575770/qsqlmysql.dll_Qt_SQL_driver_5.15.2_MSVC2019_64-bit.zip
-          unzip qsqlmysql5.15.2_MSVC2019_64.zip -d ./qsqlmysql_5.15.2_MSVC2019_64
-          ls -alR ./qsqlmysql_5.15.2_MSVC2019_64
+          mkdir qsqlmysql_5_15_2
+          unzip qsqlmysql.dll_Qt_SQL_driver_5.15.2_MSVC2019_64-bit.zip -d ./qsqlmysql_5_15_2
+          ls -alR ./qsqlmysql_5_15_2
           
       - name: Install Qt
         uses: jurplel/install-qt-action@v3      
