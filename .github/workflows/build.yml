@@ -15,20 +15,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - uses: robinraju/release-downloader@v1.10
-        with:
-          tag: 'Qt_MySQL_driver_5_15_2'
-          fileName: 'qsqlmysql.dll_Qt_SQL_driver_5.15.2_MSVC2019_64-bit.zip'
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
         
       - name: download qt mysql driver
         shell: bash
         run: |
           mkdir qsqlmysql_5.15.2_MSVC2019_64
-          unzip qsqlmysql.dll_Qt_SQL_driver_5.15.2_MSVC2019_64-bit.zip -d ./qsqlmysql_5.15.2_MSVC2019_64
+          curl https://github.com/thecodemonkey86/qt_mysql_driver/files/5575770/qsqlmysql.dll_Qt_SQL_driver_5.15.2_MSVC2019_64-bit.zip -o qsqlmysql5.15.2_MSVC2019_64.zip 
+          unzip qsqlmysql5.15.2_MSVC2019_64.zip -d ./qsqlmysql_5.15.2_MSVC2019_64
           ls -alR ./qsqlmysql_5.15.2_MSVC2019_64
-        
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v3
 
       - name: pack qt
         run: |
