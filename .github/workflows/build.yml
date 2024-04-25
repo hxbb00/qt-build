@@ -14,9 +14,10 @@ jobs:
         uses: jurplel/install-qt-action@v3
         with:
           version: '5.15.2'
-          dir: '${{ github.workspace }}/qt5/'
+          dir: '${{ github.workspace }}/qt5'
 
       - name: Show the artifacts
+        shell: bash
         run: |
           pwd
-          ls -al "${{ github.workspace }}/qt5/"
+          ls -al "${{ github.workspace }}/qt5"
