@@ -7,6 +7,10 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
+      - name: set release date
+        run: |
+          echo "RELEASE_DATE=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
+          
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -22,3 +26,10 @@ jobs:
           name: qt5-Qt
           path: |
             qt-dev-x86_64.zip
+
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+          name: qt5-x86_64-vs2019
+          tag_name: ${{ env.RELEASE_DATE }}
+          files: qt-dev-x86_64.zip
