@@ -2,7 +2,10 @@ name: build
 
 on:
   workflow_dispatch:
-
+  
+permissions:
+  contents: write
+  
 jobs:
   build:
     runs-on: windows-latest
@@ -15,16 +18,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v3
+        
       - name: install qt mysql driver
         shell: bash
         run: |
           mkdir qsqlmysql_5_15_2
           unzip qsqlmysql.dll_Qt_SQL_driver_5.15.2_MSVC2019_64-bit.zip -d ./qsqlmysql_5_15_2
           ls -alR ./qsqlmysql_5_15_2
+          cp ./qsqlmysql_5_15_2/*.dll "${{ env.Qt5_Dir }}/bin/"
+          cp ./qsqlmysql_5_15_2/sqldrivers/*.dll "${{ env.Qt5_Dir }}/plugins/sqldrivers/"
           
-      - name: Install Qt
-        uses: jurplel/install-qt-action@v3      
-
       - name: pack qt
         run: |
           7z a qt-dev-x86_64.zip "${{ env.Qt5_Dir }}"
